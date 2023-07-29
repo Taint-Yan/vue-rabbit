@@ -10,5 +10,8 @@ module.exports = {
   ],
   parserOptions: {
     ecmaVersion: 'latest'
+  },
+  rules: {
+    "vue/multi-word-component-names": "off",  // 不在强制组件名的大小写命名
   }
 }
