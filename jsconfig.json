@@ -1,3 +1,4 @@
+/* 配置路径别名 */
 {
   "compilerOptions": {
     "baseUrl": "./",
