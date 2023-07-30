@@ -10,3 +10,23 @@ export function getBannerApi() {
     url: 'home/banner'
   });
 }
+
+/**
+ * 新鲜好物
+ */
+
+export function getHomeNew() {
+  return httpInstance({
+    url: '/home/new'
+  })
+}
+
+/**
+ * 人气推荐
+ */
+
+export function getHomeHot() {
+  return httpInstance({
+    url: '/home/hot'
+  })
+}
