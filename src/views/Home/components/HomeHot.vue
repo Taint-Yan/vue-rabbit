@@ -4,7 +4,7 @@
     <ul class="goods-list">
       <li v-for="item in hotList" :key="item.id">
         <RouterLink to="/">
-          <img :src="item.picture" alt="" />
+          <img v-img-lazy="item.picture" alt="" />
           <p class="name">{{ item.title }}</p>
           <p class="desc">{{ item.alt }}</p>
         </RouterLink>
@@ -35,13 +35,11 @@ onMounted(() => {
 .goods-list {
   display: flex;
   justify-content: space-between;
-  height: 406px;
+  height: 426px;
 
   li {
     width: 306px;
     height: 406px;
-
-    background: #f0f9f4;
     transition: all 0.5s;
 
     &:hover {
@@ -58,13 +56,11 @@ onMounted(() => {
       font-size: 22px;
       padding-top: 12px;
       text-align: center;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      white-space: nowrap;
     }
 
-    .price {
-      color: $priceColor;
+    .desc {
+      color: #999;
+      font-size: 18px;
     }
   }
 }
