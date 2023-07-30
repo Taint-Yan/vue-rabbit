@@ -5,12 +5,9 @@
         <RouterLink to="/">小兔鲜</RouterLink>
       </h1>
       <ul class="app-header-nav">
-        <li class="home">
-          <RouterLink to="/">首页</RouterLink>
+        <li class="home" v-for="(item, index) in categoryList" :key="item.id + index">
+          <RouterLink to="/">{{ item.name }}</RouterLink>
         </li>
-        <li><RouterLink to="/">居家</RouterLink></li>
-        <li><RouterLink to="/">美食</RouterLink></li>
-        <li><RouterLink to="/">服饰</RouterLink></li>
       </ul>
       <div class="search">
         <i class="iconfont icon-search"></i>
@@ -21,7 +18,19 @@
   </header>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref, onMounted } from 'vue'
+import { getCategoryApi } from '@/apis/layout.js'
+
+const categoryList = ref([])
+const getCategory = async () => {
+  const data = await getCategoryApi()
+  console.log(data)
+  categoryList.value = data.result
+}
+
+onMounted(() => getCategory())
+</script>
 
 <style lang="scss" scoped>
 .app-header {

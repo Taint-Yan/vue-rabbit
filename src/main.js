@@ -9,11 +9,6 @@ import router from './router'
 // 引入公共样式
 import '@/styles/common.scss'
 
-import { getCategory } from '@/apis/testAPI'
-
-getCategory().then(res => {
-  console.log(res)
-})
 
 const app = createApp(App)
 
