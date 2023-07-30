@@ -5,7 +5,7 @@
         <RouterLink to="/">小兔鲜</RouterLink>
       </h1>
       <ul class="app-header-nav">
-        <li class="home" v-for="(item, index) in categoryList" :key="item.id + index">
+        <li class="home" v-for="(item, index) in categoryStore.categoryList" :key="item.id + index">
           <RouterLink to="/">{{ item.name }}</RouterLink>
         </li>
       </ul>
@@ -19,17 +19,10 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
-import { getCategoryApi } from '@/apis/layout.js'
+import { useCategoryStore } from '@/stores/category.js'
 
-const categoryList = ref([])
-const getCategory = async () => {
-  const data = await getCategoryApi()
-  console.log(data)
-  categoryList.value = data.result
-}
-
-onMounted(() => getCategory())
+// pinia调用
+const categoryStore = useCategoryStore()
 </script>
 
 <style lang="scss" scoped>
