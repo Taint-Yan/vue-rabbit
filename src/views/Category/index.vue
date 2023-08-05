@@ -41,7 +41,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watchEffect } from 'vue'
 import { getTopCrumbsApi } from '@/apis/category.js'
 import { getBannerApi } from '@/apis/home.js'
 import { useRoute } from 'vue-router'
@@ -53,12 +53,18 @@ const bannerList = ref([])
 const route = useRoute()
 
 // 获取面包屑数据及列表页面数据
-const getTopCrumbs = async () => {
+const getTopCrumbs = async (id = route.params.id) => {
   // 传参 id
-  const res = await getTopCrumbsApi(route.params.id)
+  const res = await getTopCrumbsApi(id)
   console.log(res)
   topCrumbs.value = res.result
 }
+
+// 目标:路由参数变化的时候 可以把分类数据接口重新发送请求
+// 监听路由参数变化
+watchEffect(() => {
+  getTopCrumbs()
+})
 
 const getBanner = async () => {
   const res = await getBannerApi({
