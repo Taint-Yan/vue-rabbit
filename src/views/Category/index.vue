@@ -8,6 +8,14 @@
           <el-breadcrumb-item>{{ topCrumbs.name }}</el-breadcrumb-item>
         </el-breadcrumb>
       </div>
+      <!-- 轮播图 -->
+      <div class="home-banner">
+        <el-carousel height="500px">
+          <el-carousel-item v-for="item in bannerList" :key="item.id">
+            <img :src="item.imgUrl" alt="" />
+          </el-carousel-item>
+        </el-carousel>
+      </div>
     </div>
   </div>
 </template>
@@ -15,14 +23,15 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { getTopCrumbsApi } from '@/apis/category.js'
+import { getBannerApi } from '@/apis/home.js'
 import { useRoute } from 'vue-router'
 // 定义数据类型
 const topCrumbs = ref({})
-
+const bannerList = ref([])
 // 路由获取id
 const route = useRoute()
 
-// 获取数据
+// 获取面包屑数据
 const getTopCrumbs = async () => {
   // 传参 id
   const res = await getTopCrumbsApi(route.params.id)
@@ -30,8 +39,17 @@ const getTopCrumbs = async () => {
   topCrumbs.value = res.result
 }
 
+const getBanner = async () => {
+  const res = await getBannerApi({
+    distributionSite: '2'
+  })
+  console.log(res)
+  bannerList.value = res.result
+}
+
 onMounted(() => {
   getTopCrumbs()
+  getBanner()
 })
 </script>
 
@@ -110,6 +128,15 @@ onMounted(() => {
 
   .bread-container {
     padding: 25px 0;
+  }
+  .home-banner {
+    width: 1240px;
+    height: 500px;
+    margin: 0 auto;
+    img {
+      width: 100%;
+      height: 500px;
+    }
   }
 }
 </style>
