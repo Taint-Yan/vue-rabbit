@@ -52,7 +52,7 @@ const bannerList = ref([])
 // 路由获取id
 const route = useRoute()
 
-// 获取面包屑数据
+// 获取面包屑数据及列表页面数据
 const getTopCrumbs = async () => {
   // 传参 id
   const res = await getTopCrumbsApi(route.params.id)
