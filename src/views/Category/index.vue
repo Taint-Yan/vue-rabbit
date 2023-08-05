@@ -41,43 +41,15 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watchEffect } from 'vue'
-import { getTopCrumbsApi } from '@/apis/category.js'
-import { getBannerApi } from '@/apis/home.js'
-import { useRoute } from 'vue-router'
 import GoodsItem from '@/components/GoodsItem.vue'
-// 定义数据类型
-const topCrumbs = ref({})
-const bannerList = ref([])
-// 路由获取id
-const route = useRoute()
+import { useBanner } from './hooks/useBanner.js'
+import { useCategory } from './hooks/useCategory.js'
 
-// 获取面包屑数据及列表页面数据
-const getTopCrumbs = async (id = route.params.id) => {
-  // 传参 id
-  const res = await getTopCrumbsApi(id)
-  console.log(res)
-  topCrumbs.value = res.result
-}
+// 从hooks中获取轮播图数据
+const { bannerList } = useBanner()
 
-// 目标:路由参数变化的时候 可以把分类数据接口重新发送请求
-// 监听路由参数变化
-watchEffect(() => {
-  getTopCrumbs()
-})
-
-const getBanner = async () => {
-  const res = await getBannerApi({
-    distributionSite: '2'
-  })
-  console.log(res)
-  bannerList.value = res.result
-}
-
-onMounted(() => {
-  getTopCrumbs()
-  getBanner()
-})
+// 从hooks中获取分类数据
+const { topCrumbs } = useCategory()
 </script>
 
 <style lang="scss" scoped>
