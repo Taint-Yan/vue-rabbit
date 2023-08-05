@@ -16,6 +16,26 @@
           </el-carousel-item>
         </el-carousel>
       </div>
+      <!-- 分类列表展示 -->
+      <div class="sub-list">
+        <h3>全部分类</h3>
+        <ul>
+          <li v-for="i in topCrumbs.children" :key="i.id">
+            <RouterLink to="/">
+              <img :src="i.picture" />
+              <p>{{ i.name }}</p>
+            </RouterLink>
+          </li>
+        </ul>
+      </div>
+      <div class="ref-goods" v-for="item in topCrumbs.children" :key="item.id">
+        <div class="head">
+          <h3>- {{ item.name }}-</h3>
+        </div>
+        <div class="body">
+          <GoodsItem v-for="good in item.goods" :goods="good" :key="good.id" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -25,6 +45,7 @@ import { ref, onMounted } from 'vue'
 import { getTopCrumbsApi } from '@/apis/category.js'
 import { getBannerApi } from '@/apis/home.js'
 import { useRoute } from 'vue-router'
+import GoodsItem from '@/components/GoodsItem.vue'
 // 定义数据类型
 const topCrumbs = ref({})
 const bannerList = ref([])

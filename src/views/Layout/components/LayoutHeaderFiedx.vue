@@ -5,7 +5,9 @@
       <!-- 导航区域 -->
       <ul class="app-header-nav">
         <li class="home" v-for="(item, index) in categoryStore.categoryList" :key="item.id + index">
-          <RouterLink :to="`/Category/${item.id}`">{{ item.name }}</RouterLink>
+          <RouterLink active-class="active" :to="`/Category/${item.id}`">{{
+            item.name
+          }}</RouterLink>
         </li>
       </ul>
 
