@@ -18,16 +18,44 @@
       </el-tabs>
       <div class="body">
         <!-- 商品列表-->
+        <GoodsItem v-for="good in goodList" :goods="good" :key="good.id" />
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { useSubcategory } from './hooks/useSubCategory.js'
+import GoodsItem from '@/components/GoodsItem.vue'
+import { ref, onMounted } from 'vue'
+import { getCategoryFilterApi, getSubCategoryAPI } from '@/apis/category.js'
+import { useRoute } from 'vue-router'
+// 定义数据
+const filterData = ref([])
+const route = useRoute()
+const goodList = ref([])
+// 获取数据
+const getFilterData = async (id = route.params.id) => {
+  const res = await getCategoryFilterApi(id)
+  filterData.value = res.result
+}
 
-// 从hooks中获取二级分类数据
-const { filterData } = useSubcategory()
+// 获取商品列表数据
+const reqData = ref({
+  categoryId: route.params.id,
+  page: 1,
+  pageSize: 20,
+  sortField: 'publishTime'
+})
+const getGoodList = async () => {
+  const res = await getSubCategoryAPI(reqData.value)
+  goodList.value = res.result.items
+  console.log(goodList.value)
+}
+
+onMounted(() => {
+  getFilterData()
+  getGoodList()
+})
 </script>
 
 <style lang="scss" scoped>

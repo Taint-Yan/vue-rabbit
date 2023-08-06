@@ -7,15 +7,14 @@ import httpInstance from '@/utils/http'
  * @return {*}
  */
 
-export function getTopCrumbsApi(id) {
+export const getTopCategoryAPI = (id) => {
   return httpInstance({
-    url: `/category`,
+    url: '/category',
     params: {
       id
     }
   })
 }
-
 /**
  * @description: 获取二级分类页的数据
  * @param {*} id 二级分类id
@@ -28,5 +27,23 @@ export function getCategoryFilterApi(id) {
     params: {
       id
     }
+  })
+}
+
+/**
+ * @description: 获取导航数据
+ * @data { 
+     categoryId: 1005000 ,
+     page: 1,
+     pageSize: 20,
+     sortField: 'publishTime' | 'orderNum' | 'evaluateNum'
+   } 
+ * @return {*}
+ */
+export const getSubCategoryAPI = (data) => {
+  return httpInstance({
+    url: '/category/goods/temporary',
+    method: 'POST',
+    data
   })
 }
