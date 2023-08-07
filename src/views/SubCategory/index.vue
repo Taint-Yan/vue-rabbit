@@ -11,7 +11,7 @@
       </el-breadcrumb>
     </div>
     <div class="sub-container">
-      <el-tabs>
+      <el-tabs v-model="reqData.sortField" @tab-change="tabChange">
         <el-tab-pane label="最新商品" name="publishTime"></el-tab-pane>
         <el-tab-pane label="最高人气" name="orderNum"></el-tab-pane>
         <el-tab-pane label="评论最多" name="evaluateNum"></el-tab-pane>
@@ -56,6 +56,11 @@ onMounted(() => {
   getFilterData()
   getGoodList()
 })
+
+const tabChange = () => {
+  reqData.value.page = 1
+  getGoodList()
+}
 </script>
 
 <style lang="scss" scoped>
