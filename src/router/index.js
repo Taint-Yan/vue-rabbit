@@ -29,7 +29,13 @@ const router = createRouter({
       name: 'Login',
       component: () => import('@/views/Login/index.vue')
     }
-  ]
+  ],
+
+  // 路由滚动行为定制
+  scrollBehavior() {
+    // return 期望滚动到哪个的位置
+    return { top: 0 }
+  }
 })
 
 export default router

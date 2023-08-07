@@ -64,9 +64,13 @@ const tabChange = () => {
 
 // 加载更多
 const load = async () => {
+  // 分页加一
   reqData.value.page++
+  // 请求数据
   const res = await getSubCategoryAPI(reqData.value)
+  // 将数据追加到goodList中
   goodList.value = [...goodList.value, ...res.result.items]
+  // 判断是否还有数据
   const disabled = ref(false)
   if (res.result.items.length === 0) {
     disabled.value = true
