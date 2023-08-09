@@ -3,7 +3,7 @@
     <!-- 内容主题区域 插槽 -->
     <ul class="goods-list">
       <li v-for="item in newList" :key="item.id">
-        <RouterLink :to="`/Detail/${id}`">
+        <RouterLink :to="`/Detail/${item.id}`">
           <img v-img-lazy="item.picture" alt="" />
           <p class="name">{{ item.name }}</p>
           <p class="price">&yen;{{ item.price }}</p>
