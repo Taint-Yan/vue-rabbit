@@ -22,12 +22,12 @@
       class="large"
       :style="[
         {
-          backgroundImage: `url(${imageList[0]})`,
+          backgroundImage: `url(${imageList[curIndex]})`,
           backgroundPositionX: `${positionX}px`,
           backgroundPositionY: `${positionY}px`
         }
       ]"
-      v-show="false"
+      v-show="!isOutside"
     ></div>
   </div>
 </template>
