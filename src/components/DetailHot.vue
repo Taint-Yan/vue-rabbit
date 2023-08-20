@@ -17,11 +17,11 @@
 </template>
 
 <script setup>
-import { ref, onMounted, definedProps, computed } from 'vue'
+import { ref, onMounted, computed, defineProps } from 'vue'
 import { fetchHotGoodsAPI } from '@/apis/detail'
 import { useRoute } from 'vue-router'
 
-const props = definedProps({
+const props = defineProps({
   hotType: {
     type: Number
   }
