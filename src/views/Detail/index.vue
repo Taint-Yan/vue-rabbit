@@ -73,7 +73,7 @@
                 </dl>
               </div>
               <!-- sku组件 -->
-
+              <XtxSku :goods="goods" @change="sukChange" />
               <!-- 数据组件 -->
 
               <!-- 按钮组件 -->
@@ -122,6 +122,7 @@ import { getDetail } from '@/apis/detail'
 import { useRoute } from 'vue-router'
 import DetailHot from '@/components/DetailHot.vue'
 import ImagesView from '@/components/ImagesView.vue'
+import XtxSku from '@/components/XtxSku/index.vue'
 
 const goods = ref({})
 const route = useRoute()
@@ -133,6 +134,11 @@ const getGoods = async () => {
 onMounted(() => {
   getGoods()
 })
+
+// sku组件的回调
+const sukChange = (sku) => {
+  console.log(sku)
+}
 </script>
 
 <style lang="scss" scoped>
