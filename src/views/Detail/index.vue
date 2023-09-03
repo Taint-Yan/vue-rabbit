@@ -24,7 +24,7 @@
           <div class="goods-info">
             <div class="media">
               <!-- 图片预览区 -->
-              <ImagesView :image-list="goods.mainPictures" />
+              <XtxImageView :image-list="goods.mainPictures" />
               <!-- 统计数量 -->
               <ul class="goods-sales">
                 <li>
@@ -121,8 +121,8 @@ import { ref, onMounted } from 'vue'
 import { getDetail } from '@/apis/detail'
 import { useRoute } from 'vue-router'
 import DetailHot from '@/components/DetailHot.vue'
-import ImagesView from '@/components/ImagesView.vue'
-import XtxSku from '@/components/XtxSku/index.vue'
+// import ImagesView from '@/components/ImagesView.vue'
+// import XtxSku from '@/components/XtxSku/index.vue'
 
 const goods = ref({})
 const route = useRoute()
